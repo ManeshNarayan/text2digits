@@ -1,6 +1,11 @@
+## Disclaimer and acknowledgement
+This code is forked from https://github.com/ShailChoksi/text2digits
+He is the original author and maintainer of the source code. Kudos and thanks for the contribution.
+This is a custom fork meant for a specific use case with small changes on top of the original repo.
+
 ## Installation
 ```
-pip3 install text2digits
+pip3 install text2digits_custom
 ```
 
 ## Usage
