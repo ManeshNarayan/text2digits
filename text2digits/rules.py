@@ -72,7 +72,7 @@ class CombinationRule(Rule):
                 second = tokens[consumed_tokens + consumed_conjunctions + 1] if consumed_tokens < len(tokens) - consumed_conjunctions - 1 else NoneToken()
 
             # Now the tricky part: we need to decide how many tokens we need to combine
-            if last_match != MatchType.DUAL_HUNDRED and first.type == WordType.TENS and second.type == WordType.UNITS:
+            if last_match != MatchType.DUAL_HUNDRED and first.type == WordType.TENS and second.type == WordType.UNITS and second.text() != '0':
                 # e.g. twenty one -> consume both
                 consumed_tokens += 2
                 last_match = MatchType.DUAL_HUNDRED
