@@ -154,7 +154,7 @@ class ConcatenationRule(Rule):
 
         # Find all numeric tokens
         while i < len(tokens):
-            if tokens[i].type in self.valid_types:
+            if tokens[i].type in self.valid_types and tokens[i].glue != ' ':
                 i += 1
             else:
                 break
