@@ -65,11 +65,19 @@ def split_glues(text: str, separator=r'\s+|(?<=\D)[.,;:\-_](?=\D)') -> Iterator[
              is returned.
     """
     while True:
-        match = re.search(separator, text)
-        if not match:
-            # The last word does not have a glue
-            yield text, ''
-            break
+        match = re.search(
+            "(^)(((\d (second|minute)))|((\d (seconds|minutes)))|(((one|two|ten) (second|minute)))|(((one|two|ten|few) (seconds|minutes)))|(((a) (second|minute)))|(((five) (seconds|minutes))))(\s|$)",
+            text, flags=re.IGNORECASE)
+        if match:
+            match = re.search(
+                "((?<=(\d (second|minute)))|(?<=(\d (seconds|minutes)))|(?<=((one|two|ten) (second|minute)))|(?<=((one|two|ten|few) (seconds|minutes)))|(?<=((a) (second|minute)))|(?<=((five) (seconds|minutes))))(\s|$)",
+                text, flags=re.IGNORECASE)
+        else:
+            match = re.search(separator, text)
+            if not match:
+                # The last word does not have a glue
+                yield text, ''
+                break
 
         yield text[:match.start()], match.group()
 
